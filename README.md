@@ -71,21 +71,39 @@ El gato aparecerá en tu escritorio. ¡Disfruta!
 
 ## Ejecutable
 
-Puedes crear un archivo ejecutable con `pyinstaller`.
+Puedes crear un archivo ejecutable con `pyinstaller` usando el archivo de configuración del proyecto (recomendado):
 
-Primero, instala `pyinstaller`:
+1. Instala `pyinstaller`:
 
 ```bash
 pip install pyinstaller
 ```
 
-Luego, ejecuta el siguiente comando:
+2. Desde la **raíz del proyecto**, genera el ejecutable:
 
 ```bash
-pyinstaller --onefile --windowed --add-data "assets;assets" src/main.py
+pyinstaller DesktopCat.spec
 ```
 
-Esto creará un archivo ejecutable en la carpeta `dist`.
+El ejecutable `DesktopCat.exe` se creará en la carpeta `dist/`, con el ícono `assets/icon.ico` y opciones pensadas para reducir falsos positivos de antivirus (sin compresión UPX).
+
+### Si el antivirus lo marca
+
+Los ejecutables empaquetados con PyInstaller a veces son detectados por error. Para reducir falsos positivos:
+
+- **El `.spec` ya desactiva UPX** (compresión que suelen marcar los antivirus).
+- **Añade una excepción** en Windows Defender: Configuración → Privacidad y seguridad → Seguridad de Windows → Protección contra virus → Exclusiones.
+- **Reporta falsos positivos**: en [Microsoft Security Intelligence](https://www.microsoft.com/en-us/wdsi/filesubmission) puedes enviar el ejecutable como “False positive” para que lo whitelisten.
+
+### Build manual (sin .spec)
+
+Si prefieres no usar el `.spec`:
+
+```bash
+pyinstaller --onefile --windowed --icon=assets/icon.ico --add-data "assets;assets" --noupx src/main.py
+```
+
+En Linux/macOS usa `:` en lugar de `;` en `--add-data`.
 
 ## Contribuir
 

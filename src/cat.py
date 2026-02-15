@@ -1,4 +1,5 @@
 import os
+import sys
 import random
 from enum import Enum
 from PyQt6.QtWidgets import QLabel, QApplication
@@ -25,7 +26,11 @@ class DesktopCat(QLabel):
         super().__init__()
 
         # -------- Cargar y redimensionar imágenes --------
-        base_path = os.path.dirname(os.path.dirname(__file__))
+        # Ejecutable (PyInstaller): recursos en sys._MEIPASS
+        if getattr(sys, "frozen", False):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         assets_path = os.path.join(base_path, "assets")
 
         def load_image(name):
