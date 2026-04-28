@@ -87,6 +87,8 @@ pyinstaller DesktopCat.spec
 
 El ejecutable `DesktopCat.exe` se creará en la carpeta `dist/`, con el ícono `assets/icon.ico` y opciones pensadas para reducir falsos positivos de antivirus (sin compresión UPX).
 
+> Nota: si usas `main.spec`, también está configurado para `upx=False` y así evitar la compresión que suelen marcar los antivirus.
+
 ### Si el antivirus lo marca
 
 Los ejecutables empaquetados con PyInstaller a veces son detectados por error. Para reducir falsos positivos:
