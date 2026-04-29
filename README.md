@@ -68,6 +68,23 @@ El gato aparecerá en tu escritorio. ¡Disfruta!
 | gato5.png | CAÍDA      |
 | gato6.png | ATERRIZAJE |
 | gato7.png | AGARRADO   |
+| icon.ico  | ÍCONO ejecutable |
+| gato8.png  | JUGANDO (minijuego) |
+| gato9.png  | SALTANDO |
+| gato10.png | ACROBACIA |
+| gato11.png | ACECHANDO |
+
+### Tipo y tamaño de imágenes
+
+- Usa `PNG` para todas las imágenes del gato. `PNG` mantiene transparencia y calidad cuando el sprite se redimensiona.
+- El icono del ejecutable debe ser `ICO` (`assets/icon.ico`) para que Windows lo use correctamente. También puedes crear el icono desde un `PNG` de alta resolución y convertirlo a `ICO`.
+- En el código, hay un código comentado para redimensionar las imágenes a `46x44` píxeles en pantalla. Por eso es mejor que las fuentes sean más grandes que ese tamaño, idealmente:
+    - `96x92` o `128x120` para las animaciones del gato.
+    - `256x256` para el icono del ejecutable.
+- Mantén la relación de aspecto aproximada de 46:44 para que la imagen no se vea distorsionada al escalar.
+- Si reemplazas imágenes, guarda los nuevos archivos en `assets/` con el mismo nombre y formato `PNG`.
+
+Si necesitas más animaciones en el futuro, crea nuevas imágenes `PNG` con transparencia y añádelas al proyecto. El código usará las nuevas imágenes si se agregan con los nombres sugeridos.
 
 ## Ejecutable
 
@@ -96,6 +113,12 @@ Los ejecutables empaquetados con PyInstaller a veces son detectados por error. P
 - **El `.spec` ya desactiva UPX** (compresión que suelen marcar los antivirus).
 - **Añade una excepción** en Windows Defender: Configuración → Privacidad y seguridad → Seguridad de Windows → Protección contra virus → Exclusiones.
 - **Reporta falsos positivos**: en [Microsoft Security Intelligence](https://www.microsoft.com/en-us/wdsi/filesubmission) puedes enviar el ejecutable como “False positive” para que lo whitelisten.
+- **Los ejecutables PyInstaller pueden seguir siendo escaneados**: incluso sin UPX, algunos antivirus muestran el archivo como sospechoso por heurística. Si el archivo sigue siendo detectado, lo más efectivo es añadir una exclusión local o enviar el ejecutable como falso positivo.
+
+## Nuevas interacciones del gato
+
+- Haz `clic derecho` sobre el gato para que ejecute una acción especial aleatoria.
+- Haz `doble clic` sobre el gato para iniciar un minijuego de atrapar al gato. Durante 10 segundos, haz clic sobre el gato para sumar puntos.
 
 ### Build manual (sin .spec)
 
