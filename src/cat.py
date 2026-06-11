@@ -20,8 +20,8 @@ class CatState(Enum):
 
 
 class DesktopCat(QLabel):
-    TARGET_WIDTH = 46
-    TARGET_HEIGHT = 44
+    # // TARGET_WIDTH = 46
+    # // TARGET_HEIGHT = 44
 
     def __init__(self):
         super().__init__()
@@ -39,9 +39,10 @@ class DesktopCat(QLabel):
         def load_image(name):
             pix = QPixmap(os.path.join(assets_path, name))
             # // redimensionado a 46x44 en tiempo de ejecución
-            return pix.scaled(self.TARGET_WIDTH, self.TARGET_HEIGHT,
-                              Qt.AspectRatioMode.IgnoreAspectRatio,
-                              Qt.TransformationMode.SmoothTransformation)
+            # return pix.scaled(self.TARGET_WIDTH, self.TARGET_HEIGHT,
+            #                   Qt.AspectRatioMode.IgnoreAspectRatio,
+            #                   Qt.TransformationMode.SmoothTransformation)
+            return pix
 
         def load_optional_image(name):
             path = os.path.join(assets_path, name)
@@ -63,7 +64,8 @@ class DesktopCat(QLabel):
         self.img_stealth = load_optional_image("gato11.png")
 
         self.setPixmap(self.img_quieto)
-        self.resize(self.TARGET_WIDTH, self.TARGET_HEIGHT)
+        # // self.resize(self.TARGET_WIDTH, self.TARGET_HEIGHT)
+        self.resize(self.img_quieto.width(), self.img_quieto.height())
 
         # -------- Ventana --------
         self.setWindowFlags(
@@ -105,7 +107,8 @@ class DesktopCat(QLabel):
         )
         self.status_label.hide()
         self.status_label.move(0, 0)
-        self.status_label.resize(self.TARGET_WIDTH, 24)
+        # // self.status_label.resize(self.TARGET_WIDTH, 24)
+        self.status_label.resize(self.width(), 24)
 
         # -------- Timers --------
         self.timer_main = QTimer()

@@ -32,6 +32,7 @@ MANUAL
 #  we recommend ignoring them :-)
 *.manifest
 *.spec
+!DesktopCat.spec
 
 # Installer logs
 pip-log.txt
